@@ -1,0 +1,17 @@
+
+CC = arm-linux-gcc
+
+CFLAGS=-D_REENTRANT -DARM -pthread \
+	   -I/usr/gtkarm/include/gtk-2.0/ \
+	   -L/usr/gtkarm/lib/gtk-2.0 
+	   -lgtk-x11-2.0 -lgdk-x11-2.0 -latk-1.0 -lpangoft2-1.0 -lgdk_pixbuf-2.0 \
+	   -lm -lpangocairo-1.0 -lcairo -lgio-2.0 -lpango-1.0 -lfreetype -lfontconfig \
+	   -lgobject-2.0 -lgmodule-2.0 -lgthread-2.0 -lrt -lglib-2.0 -lwebkitgtk-1.0 \
+	   -lsoup-2.4 -lxml2 -lfakekey -lz
+
+main_arm: main.c callback.c drawmenu.c drawui.c focallaw.c opengl.c toolbar.c trackball.c tree.c datastruct.h drawui.h trackball.h
+	$(CC) main.c callback.c drawmenu.c drawui.c	 focallaw.c opengl.c toolbar.c trackball.c tree.c -o main_arm $(CFLAGS)
+
+.PHONY:clean
+clean: 
+	rm -f *.o main
